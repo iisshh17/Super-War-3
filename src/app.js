@@ -27,7 +27,15 @@ const initPlayers = (players) => {
 
     // Instead of forloop use Map method
     // Code here
-
+     detailedPlayers = players.map((name,index)=>{
+        let type = index%2===0? "hero":"villain";
+        return{
+            name : name,
+            strength: getRandomStrength(),
+            image : "images/super-"+(i+1)+".png",
+            type : type
+        }
+     })
     return detailedPlayers;
 }
 
@@ -43,6 +51,19 @@ const buildPlayers = (players, type) => {
     // Instead of using for loop
     // Use chaining of Array methods - filter, map and join
     // Type your code here
+
+    let HeroVsVillain = players.filter((player)=>player.type===type);
+    console.log(HeroVsVillain);
+    let Detail = HeroVsVillain.map((player)=>{
+        return `<div class="player">
+        <img src="${players[i].image}">
+        <div class="name">${players[i].name}</div>
+        <div class="strength">${players[i].strength}</div>
+     </div>`;
+    })
+    console.log(Detail);
+    fragment = Detail.join('');
+
 
     return fragment;
 }
